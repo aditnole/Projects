@@ -1,0 +1,1209 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{pw}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{logstop}
+        \PY{o}{\PYZpc{}}\PY{k}{logstart} \PYZhy{}rtq \PYZti{}/.logs/pw.py append
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{matplotlib}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.dpi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{144}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{static\PYZus{}grader} \PY{k+kn}{import} \PY{n}{grader}
+\end{Verbatim}
+
+
+    \hypertarget{pw-miniproject}{%
+\section{PW Miniproject}\label{pw-miniproject}}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+The objective of this miniproject is to exercise your ability to use
+basic Python data structures, define functions, and control program
+flow. We will be using these concepts to perform some fundamental data
+wrangling tasks such as joining data sets together, splitting data into
+groups, and aggregating data into summary statistics. \textbf{Please do
+not use \texttt{pandas} or \texttt{numpy} to answer these questions.}
+
+We will be working with medical data from the British NHS on
+prescription drugs. Since this is real data, it contains many
+ambiguities that we will need to confront in our analysis. This is
+commonplace in data science, and is one of the lessons you will learn in
+this miniproject.
+
+    \hypertarget{downloading-the-data}{%
+\subsection{Downloading the data}\label{downloading-the-data}}
+
+We first need to download the data we'll be using from Amazon S3:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PYZpc{}\PYZpc{}bash
+        mkdir pw\PYZhy{}data
+        wget http://dataincubator\PYZhy{}wqu.s3.amazonaws.com/pwdata/201701scripts\PYZus{}sample.json.gz \PYZhy{}nc \PYZhy{}P ./pw\PYZhy{}data
+        wget http://dataincubator\PYZhy{}wqu.s3.amazonaws.com/pwdata/practices.json.gz \PYZhy{}nc \PYZhy{}P ./pw\PYZhy{}data
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+mkdir: cannot create directory ‘pw-data’: File exists
+File ‘./pw-data/201701scripts\_sample.json.gz’ already there; not retrieving.
+
+File ‘./pw-data/practices.json.gz’ already there; not retrieving.
+
+
+    \end{Verbatim}
+
+    \hypertarget{loading-the-data}{%
+\subsection{Loading the data}\label{loading-the-data}}
+
+The first step of the project is to read in the data. We will discuss
+reading and writing various kinds of files later in the course, but the
+code below should get you started.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{import} \PY{n+nn}{gzip}
+        \PY{k+kn}{import} \PY{n+nn}{simplejson} \PY{k}{as} \PY{n+nn}{json}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{with} \PY{n}{gzip}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./pw\PYZhy{}data/201701scripts\PYZus{}sample.json.gz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+            \PY{n}{scripts} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+        
+        \PY{k}{with} \PY{n}{gzip}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./pw\PYZhy{}data/practices.json.gz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+            \PY{n}{practices} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+\end{Verbatim}
+
+
+    This data set comes from Britain's National Health Service. The
+\texttt{scripts} variable is a list of prescriptions issued by NHS
+doctors. Each prescription is represented by a dictionary with various
+data fields: \texttt{\textquotesingle{}practice\textquotesingle{}},
+\texttt{\textquotesingle{}bnf\_code\textquotesingle{}},
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}},
+\texttt{\textquotesingle{}quantity\textquotesingle{}},
+\texttt{\textquotesingle{}items\textquotesingle{}},
+\texttt{\textquotesingle{}nic\textquotesingle{}}, and
+\texttt{\textquotesingle{}act\_cost\textquotesingle{}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{scripts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} [\{'bnf\_code': '0101010G0AAABAB',
+          'items': 2,
+          'practice': 'N81013',
+          'bnf\_name': 'Co-Magaldrox\_Susp 195mg/220mg/5ml S/F',
+          'nic': 5.98,
+          'act\_cost': 5.56,
+          'quantity': 1000\},
+         \{'bnf\_code': '0101021B0AAAHAH',
+          'items': 1,
+          'practice': 'N81013',
+          'bnf\_name': 'Alginate\_Raft-Forming Oral Susp S/F',
+          'nic': 1.95,
+          'act\_cost': 1.82,
+          'quantity': 500\}]
+\end{Verbatim}
+            
+    A
+\href{http://webarchive.nationalarchives.gov.uk/20180328130852tf_/http://content.digital.nhs.uk/media/10686/Download-glossary-of-terms-for-GP-prescribing---presentation-level/pdf/PLP_Presentation_Level_Glossary_April_2015.pdf/}{glossary
+of terms} and
+\href{http://webarchive.nationalarchives.gov.uk/20180328130852tf_/http://content.digital.nhs.uk/media/10048/FAQs-Practice-Level-Prescribingpdf/pdf/PLP_FAQs_April_2015.pdf/}{FAQ}
+is available from the NHS regarding the data. Below we supply a data
+dictionary briefly describing what these fields mean.
+
+\begin{longtable}[]{@{}cl@{}}
+\toprule
+\begin{minipage}[b]{0.49\columnwidth}\centering
+Data field\strut
+\end{minipage} & \begin{minipage}[b]{0.45\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}practice\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+Code designating the medical practice issuing the prescription\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}bnf\_code\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+British National Formulary drug code\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+British National Formulary drug name\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}quantity\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+Number of capsules/quantity of liquid/grams of powder prescribed\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}items\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+Number of refills (e.g.~if
+\texttt{\textquotesingle{}quantity\textquotesingle{}} is 30 capsules, 3
+\texttt{\textquotesingle{}items\textquotesingle{}} means 3 bottles of 30
+capsules)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}nic\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+Net ingredient cost\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.49\columnwidth}\centering
+\texttt{\textquotesingle{}act\_cost\textquotesingle{}}\strut
+\end{minipage} & \begin{minipage}[t]{0.45\columnwidth}\raggedright
+Total cost including containers, fees, and discounts\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    The \texttt{practices} variable is a list of member medical practices of
+the NHS. Each practice is represented by a dictionary containing
+identifying information for the medical practice. Most of the data
+fields are self-explanatory. Notice the values in the
+\texttt{\textquotesingle{}code\textquotesingle{}} field of
+\texttt{practices} match the values in the
+\texttt{\textquotesingle{}practice\textquotesingle{}} field of
+\texttt{scripts}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{practices}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [\{'code': 'A81001',
+          'name': 'THE DENSHAM SURGERY',
+          'addr\_1': 'THE HEALTH CENTRE',
+          'addr\_2': 'LAWSON STREET',
+          'borough': 'STOCKTON ON TEES',
+          'village': 'CLEVELAND',
+          'post\_code': 'TS18 1HU'\},
+         \{'code': 'A81002',
+          'name': 'QUEENS PARK MEDICAL CENTRE',
+          'addr\_1': 'QUEENS PARK MEDICAL CTR',
+          'addr\_2': 'FARRER STREET',
+          'borough': 'STOCKTON ON TEES',
+          'village': 'CLEVELAND',
+          'post\_code': 'TS18 2AW'\}]
+\end{Verbatim}
+            
+    In the following questions we will ask you to explore this data set. You
+may need to combine pieces of the data set together in order to answer
+some questions. Not every element of the data set will be used in
+answering the questions.
+
+    \hypertarget{question-1-summary_statistics}{%
+\subsection{Question 1:
+summary\_statistics}\label{question-1-summary_statistics}}
+
+Our beneficiary data (\texttt{scripts}) contains quantitative data on
+the number of items dispensed
+(\texttt{\textquotesingle{}items\textquotesingle{}}), the total quantity
+of item dispensed
+(\texttt{\textquotesingle{}quantity\textquotesingle{}}), the net cost of
+the ingredients (\texttt{\textquotesingle{}nic\textquotesingle{}}), and
+the actual cost to the patient
+(\texttt{\textquotesingle{}act\_cost\textquotesingle{}}). Whenever
+working with a new data set, it can be useful to calculate summary
+statistics to develop a feeling for the volume and character of the
+data. This makes it easier to spot trends and significant features
+during further stages of analysis.
+
+Calculate the sum, mean, standard deviation, and quartile statistics for
+each of these quantities. Format your results for each quantity as a
+list:
+\texttt{{[}sum,\ mean,\ standard\ deviation,\ 1st\ quartile,\ median,\ 3rd\ quartile{]}}.
+We'll create a \texttt{tuple} with these lists for each quantity as a
+final result.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{def} \PY{n+nf}{describe}\PY{p}{(}\PY{n}{key}\PY{p}{)}\PY{p}{:}
+            
+            \PY{k}{try}\PY{p}{:} 
+                \PY{n}{total} \PY{o}{=} \PY{n+nb}{sum} \PY{p}{(}\PY{n}{scripts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{n}{avg} \PY{o}{=} \PY{n}{total}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}
+                \PY{n}{s} \PY{o}{=}  \PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{scripts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{avg}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}
+                \PY{n}{sorted\PYZus{}key} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{scripts}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{i}\PY{p}{:} \PY{n}{i}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}sorted\PYZus{}key = scripts[i][key].sort()}
+                \PY{n}{q25} \PY{o}{=} \PY{n}{sorted\PYZus{}key}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{n}{key}\PY{p}{]}
+                \PY{n}{med} \PY{o}{=} \PY{n}{sorted\PYZus{}key}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{n}{key}\PY{p}{]}
+                \PY{n}{q75} \PY{o}{=} \PY{n}{sorted\PYZus{}key}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{n}{key}\PY{p}{]}
+            \PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:} 
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{oops}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+               
+                
+            \PY{k}{return} \PY{p}{(}\PY{n}{total}\PY{p}{,} \PY{n}{avg}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{q25}\PY{p}{,} \PY{n}{med}\PY{p}{,} \PY{n}{q75}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{summary} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{items}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{describe}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{items}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                   \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{quantity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{describe}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{quantity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                   \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{describe}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                   \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}cost}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{describe}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{act\PYZus{}cost}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{summary}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[('items', (4410054, 11.522744731217633, 33.11220959820685, 1, 3, 8)), ('quantity', (316356836, 826.5883059943667, 3872.186073305146, 30, 120, 466)), ('nic', (29048309.790000338, 75.89844899484315, 197.57308474088356, 7.7, 22.62, 65.94)), ('act\_cost', (27053937.599999707, 70.68748295124895, 183.26755837716715, 7.25, 21.24, 61.53))]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{grader}\PY{o}{.}\PY{n}{score}\PY{o}{.}\PY{n}{pw\PYZus{}\PYZus{}summary\PYZus{}statistics}\PY{p}{(}\PY{n}{summary}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+==================
+Your score:  1.0
+==================
+
+    \end{Verbatim}
+
+    \hypertarget{question-2-most_common_item}{%
+\subsection{Question 2:
+most\_common\_item}\label{question-2-most_common_item}}
+
+Often we are not interested only in how the data is distributed in our
+entire data set, but within particular groups -- for example, how many
+items of each drug (i.e.
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}) were prescribed?
+Calculate the total items prescribed for each
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}. What is the most
+commonly prescribed
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} in our data?
+
+To calculate this, we first need to split our data set into groups
+corresponding with the different values of
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}. Then we can sum
+the number of items dispensed within in each group. Finally we can find
+the largest sum.
+
+We'll use \texttt{\textquotesingle{}bnf\_name\textquotesingle{}} to
+construct our groups. You should have \emph{5619} unique values for
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{bnf\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{n}{scripts}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{k}{for} \PY{n}{key} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{scripts}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{scripts}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{bnf\PYZus{}names}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} ['Co-Magaldrox\_Susp 195mg/220mg/5ml S/F',
+          'Alginate\_Raft-Forming Oral Susp S/F',
+          'Sod Algin/Pot Bicarb\_Susp S/F',
+          'Sod Alginate/Pot Bicarb\_Tab Chble 500mg',
+          'Gaviscon Infant\_Sach 2g (Dual Pack) S/F']
+\end{Verbatim}
+            
+    We want to construct ``groups'' identified by
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}, where each group
+is a collection of prescriptions (i.e.~dictionaries from
+\texttt{scripts}). We'll construct a dictionary called \texttt{groups},
+using \texttt{bnf\_names} as the keys. We'll represent a group with a
+\texttt{list}, since we can easily append new members to the group. To
+split our \texttt{scripts} into groups by
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}, we should
+iterate over \texttt{scripts}, appending prescription dictionaries to
+each group as we encounter them.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{groups} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{name}\PY{p}{:} \PY{p}{[}\PY{p}{]} \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{bnf\PYZus{}names}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{script} \PY{o+ow}{in} \PY{n}{scripts}\PY{p}{:}
+             \PY{n}{groups}\PY{p}{[}\PY{n}{script}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{script}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{}for script in scripts:}
+         \PY{c+c1}{\PYZsh{}   print(script[\PYZsq{}bnf\PYZus{}name\PYZsq{}])}
+\end{Verbatim}
+
+
+    Now that we've constructed our groups we should sum up
+\texttt{\textquotesingle{}items\textquotesingle{}} in each group and
+find the \texttt{\textquotesingle{}bnf\_name\textquotesingle{}} with the
+largest sum. The result, \texttt{max\_item}, should have the form
+\texttt{{[}(bnf\_name,\ item\ total){]}}, e.g.
+\texttt{{[}(\textquotesingle{}Foobar\textquotesingle{},\ 2000){]}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{max\PYZus{}item} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{item\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{tuple\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{groups}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{item\PYZus{}name} \PY{o}{=} \PY{n}{k}
+             \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{item\PYZus{}values} \PY{o}{=} \PY{n}{v}
+             \PY{k}{for} \PY{n}{value} \PY{o+ow}{in} \PY{n}{item\PYZus{}values}\PY{p}{:}
+                 \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{n}{item\PYZus{}total} \PY{o}{+} \PY{n}{value}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{items}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                 
+             \PY{n}{tuple\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{(}\PY{p}{[}\PY{n}{item\PYZus{}name}\PY{p}{,} \PY{n}{item\PYZus{}total}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{tuple\PYZus{}list}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{max\PYZus{}item}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tuple\PYZus{}list}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{max\PYZus{}item}
+             
+                 
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} [('Omeprazole\_Cap E/C 20mg', 113826)]
+\end{Verbatim}
+            
+    \textbf{TIP:} If you are getting an error from the grader below, please
+make sure your answer conforms to the correct format of
+\texttt{{[}(bnf\_name,\ item\ total){]}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{grader}\PY{o}{.}\PY{n}{score}\PY{o}{.}\PY{n}{pw\PYZus{}\PYZus{}most\PYZus{}common\PYZus{}item}\PY{p}{(}\PY{n}{max\PYZus{}item}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+==================
+Your score:  1.0
+==================
+
+    \end{Verbatim}
+
+    \textbf{Challenge:} Write a function that constructs groups as we did
+above. The function should accept a list of dictionaries (e.g.
+\texttt{scripts} or \texttt{practices}) and a tuple of fields to
+\texttt{groupby} (e.g.
+\texttt{(\textquotesingle{}bnf\_name\textquotesingle{})} or
+\texttt{(\textquotesingle{}bnf\_name\textquotesingle{},\ \textquotesingle{}post\_code\textquotesingle{})})
+and returns a dictionary of groups. The following questions will require
+you to aggregate data in groups, so this could be a useful function for
+the rest of the miniproject.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{def} \PY{n+nf}{group\PYZus{}by\PYZus{}field}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{fields}\PY{p}{)}\PY{p}{:}
+             \PY{n}{new\PYZus{}dict} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}} 
+             \PY{n}{groupby\PYZus{}titles} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{fields}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} groups = \PYZob{}name: [] for name in bnf\PYZus{}names\PYZcb{} or script in scripts:}
+         \PY{c+c1}{\PYZsh{} groups[script[\PYZsq{}bnf\PYZus{}name\PYZsq{}]].append(script) }
+\end{Verbatim}
+
+
+    https://www.saltycrane.com/blog/2014/10/example-using-groupby-and-defaultdict-do-same-task/
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{groups} \PY{o}{=} \PY{n}{group\PYZus{}by\PYZus{}field}\PY{p}{(}\PY{n}{scripts}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+        \PY{n}{test\PYZus{}max\PYZus{}item} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{group}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{item}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{k}{for} \PY{n}{group} \PY{o+ow}{in} \PY{n}{groups}\PY{p}{)}
+        
+        \PY{k}{assert} \PY{n}{test\PYZus{}max\PYZus{}item} \PY{o}{==} \PY{n}{max\PYZus{}item}
+\end{Verbatim}
+
+
+    \hypertarget{question-3-postal_totals}{%
+\subsection{Question 3: postal\_totals}\label{question-3-postal_totals}}
+
+Our data set is broken up among different files. This is typical for
+tabular data to reduce redundancy. Each table typically contains data
+about a particular type of event, processes, or physical object. Data on
+prescriptions and medical practices are in separate files in our case.
+If we want to find the total items prescribed in each postal code, we
+will have to \emph{join} our prescription data (\texttt{scripts}) to our
+clinic data (\texttt{practices}).
+
+Find the total items prescribed in each postal code, representing the
+results as a list of tuples
+\texttt{(post\ code,\ total\ items\ prescribed)}. Sort your results
+ascending alphabetically by post code and take only results from the
+first 100 post codes. Only include post codes if there is at least one
+prescription from a practice in that post code.
+
+\textbf{NOTE:} Some practices have multiple postal codes associated with
+them. Use the alphabetically first postal code.
+
+    We can join \texttt{scripts} and \texttt{practices} based on the fact
+that \texttt{\textquotesingle{}practice\textquotesingle{}} in
+\texttt{scripts} matches
+\texttt{\textquotesingle{}code\textquotesingle{}} in \texttt{practices}.
+However, we must first deal with the repeated values of
+\texttt{\textquotesingle{}code\textquotesingle{}} in \texttt{practices}.
+We want the alphabetically first postal codes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+        \PY{n}{group\PYZus{}by} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+        \PY{k}{for} \PY{n}{practice} \PY{o+ow}{in} \PY{n}{practices}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}for key,value in practice.items():}
+                \PY{n}{key\PYZus{}string} \PY{o}{=} \PY{n}{practice}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                \PY{n}{mylist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{mylist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{practice}\PY{p}{)}
+                \PY{n}{group\PYZus{}by}\PY{p}{[}\PY{n}{key\PYZus{}string}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mylist}\PY{p}{)}
+            
+        
+            
+        \PY{n}{practice\PYZus{}postal} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{group\PYZus{}by}\PY{p}{)}
+        \PY{k}{for} \PY{n}{code} \PY{o+ow}{in} \PY{n}{practice\PYZus{}postal}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n+nb}{min}\PY{p}{(}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                        \PY{k+kc}{None}
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{code}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{key}\PY{p}{,}\PY{n}{value} \PY{o+ow}{in} \PY{n}{practice\PYZus{}postal}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{key} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{there is  0 value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:} 
+                \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{=} \PY{n}{value}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}  
+                
+        \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K82019}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 'HP21 8TR'
+\end{Verbatim}
+            
+    https://stackoverflow.com/questions/13264511/typeerror-unhashable-type-dict
+
+    \#for key,value in practice\_postal.items(): if key == `0':
+print(``there is 0 value'') else: \# practice\_postal{[}key{]} =
+value{[}0{]}\\
+\#practice\_postal{[}`K82019'{]} \#group\_by{[}`K82019'{]}\\
+test\_pref = `K82019' \#for practice in practices: res = \{key:val for
+key, val in group\_by.items() if key.startswith(test\_pref)\}
+
+print(``Filtered dictionary keys are :'' + str(res))
+
+test\_pref = `K82019' for practice in practices: for k,v in
+practice.items(): if practice{[}k{]} == `K82019':
+print(``------------------------'') print(practice)
+
+    \textbf{Challenge:} This is an aggregation of the practice data grouped
+by practice codes. Write an alternative implementation of the above cell
+using the \texttt{group\_by\_field} function you defined previously.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{assert} \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K82019}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HP21 8TR}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    Now we can join \texttt{practice\_postal} to \texttt{scripts}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{joined} \PY{o}{=} \PY{n}{scripts}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+         \PY{k}{for} \PY{n}{abc} \PY{o+ow}{in} \PY{n}{joined}\PY{p}{:}
+             \PY{n}{abc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{practice\PYZus{}postal}\PY{p}{[}\PY{n}{abc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{practice}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+              
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{postjoinedcode} \PY{o}{=} \PY{p}{[}\PY{n}{joined}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{joined}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+         \PY{n}{newgroups} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{name}\PY{p}{:} \PY{p}{[}\PY{p}{]} \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{postjoinedcode}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{abc} \PY{o+ow}{in} \PY{n}{joined}\PY{p}{:}
+             \PY{n}{newgroups}\PY{p}{[}\PY{n}{abc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{abc}\PY{p}{)} 
+\end{Verbatim}
+
+
+    Finally we'll group the prescription dictionaries in \texttt{joined} by
+\texttt{\textquotesingle{}post\_code\textquotesingle{}} and sum up the
+items prescribed in each group, as we did in the previous question.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{item\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{tuple\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{newgroups}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{postcode} \PY{o}{=} \PY{n}{k}
+             \PY{n}{item\PYZus{}values} \PY{o}{=} \PY{n}{v}
+             \PY{k}{for} \PY{n}{value} \PY{o+ow}{in} \PY{n}{item\PYZus{}values}\PY{p}{:}
+                 \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{n}{item\PYZus{}total} \PY{o}{+} \PY{n}{value}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{items}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                 
+             \PY{n}{tuple\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{(}\PY{p}{[}\PY{n}{postcode}\PY{p}{,} \PY{n}{item\PYZus{}total}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{tuple\PYZus{}list}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} 
+         
+         \PY{n}{my\PYZus{}100\PYZus{}list} \PY{o}{=} \PY{n}{tuple\PYZus{}list}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}
+                    
+                     
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{postal\PYZus{}totals} \PY{o}{=} \PY{n}{my\PYZus{}100\PYZus{}list}
+         
+         \PY{n}{grader}\PY{o}{.}\PY{n}{score}\PY{o}{.}\PY{n}{pw\PYZus{}\PYZus{}postal\PYZus{}totals}\PY{p}{(}\PY{n}{postal\PYZus{}totals}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+==================
+Your score:  1.0
+==================
+
+    \end{Verbatim}
+
+    \hypertarget{question-4-items_by_region}{%
+\subsection{Question 4:
+items\_by\_region}\label{question-4-items_by_region}}
+
+Now we'll combine the techniques we've developed to answer a more
+complex question. Find the most commonly dispensed item in each postal
+code, representing the results as a list of tuples (\texttt{post\_code},
+\texttt{bnf\_name}, amount dispensed as proportion of total). Sort your
+results ascending alphabetically by post code and take only results from
+the first 100 post codes.
+
+\textbf{NOTE:} We'll continue to use the \texttt{joined} variable we
+created before, where we've chosen the alphabetically first postal code
+for each practice. Additionally, some postal codes will have multiple
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} with the same
+number of items prescribed for the maximum. In this case, we'll take the
+alphabetically first
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}.
+
+    Now we need to calculate the total items of each
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} prescribed in
+each \texttt{\textquotesingle{}post\_code\textquotesingle{}}. Use the
+techniques we developed in the previous questions to calculate these
+totals. You should have 141196
+\texttt{(\textquotesingle{}post\_code\textquotesingle{},\ \textquotesingle{}bnf\_name\textquotesingle{})}
+groups.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+         \PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{script} \PY{o+ow}{in} \PY{n}{joined}\PY{p}{:}
+             \PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post}\PY{p}{[}\PY{n}{script}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{post\PYZus{}code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{script}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{script}\PY{p}{)}
+            
+         \PY{n}{sorted\PYZus{}dict} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post} \PY{o}{=} \PY{n}{sorted\PYZus{}dict}
+         
+             
+             
+         \PY{k}{assert} \PY{n+nb}{len}\PY{p}{(}\PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{141196}
+\end{Verbatim}
+
+
+    Let's use \texttt{total\_items} to find the maximum item total for each
+postal code. To do this, we will want to regroup
+\texttt{total\_items\_by\_bnf\_post} by
+\texttt{\textquotesingle{}post\_code\textquotesingle{}} only, not by
+\texttt{(\textquotesingle{}post\_code\textquotesingle{},\ \textquotesingle{}bnf\_name\textquotesingle{})}.
+First let's turn \texttt{total\_items} into a list of dictionaries
+(similar to \texttt{scripts} or \texttt{practices}) and then group it by
+\texttt{\textquotesingle{}post\_code\textquotesingle{}}. You should have
+118 groups in the resulting \texttt{total\_items\_by\_post} after
+grouping \texttt{total\_items} by
+\texttt{\textquotesingle{}post\_code\textquotesingle{}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{total\PYZus{}items} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{newdict} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,}\PY{n}{value} \PY{o+ow}{in} \PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}bnf\PYZus{}post}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{newdict}\PY{p}{[}\PY{n}{key}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+             
+         
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}here is my new dict\PYZdq{})}
+         \PY{c+c1}{\PYZsh{}newdict}
+                 
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{newdict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:} 
+             \PY{n}{l} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{n}{l}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{=} \PY{n}{value}
+             \PY{n}{total\PYZus{}items}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+             
+         
+             
+             
+                 
+         
+             
+         \PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}post} \PY{o}{=} \PY{n}{total\PYZus{}items}    
+         \PY{n+nb}{len}\PY{p}{(}\PY{n}{total\PYZus{}items}\PY{p}{)}
+             
+         \PY{c+c1}{\PYZsh{}assert len(total\PYZus{}items\PYZus{}by\PYZus{}post) == 118}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 118
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{assert} \PY{n+nb}{len}\PY{p}{(}\PY{n}{total\PYZus{}items\PYZus{}by\PYZus{}post}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{118}
+\end{Verbatim}
+
+
+    Now we will aggregate the groups in \texttt{total\_by\_item\_post} to
+create \texttt{max\_item\_by\_post}. Some
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} have the same
+item total within a given postal code. Therefore, if more than one
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} has the maximum
+item total in a given postal code, we'll take the alphabetically first
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}. We can do this
+by \href{https://docs.python.org/2.7/howto/sorting.html}{sorting} each
+group according to the item total and
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{max\PYZus{}item\PYZus{}by\PYZus{}post} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{puple\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{onedef\PYZus{}dict} \PY{o+ow}{in} \PY{n}{total\PYZus{}items}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{k}\PY{p}{,}\PY{n}{v} \PY{o+ow}{in} \PY{n}{onedef\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{l+m+mi}{0}
+                     \PY{n}{postcode}\PY{o}{=} \PY{n}{k}
+                     \PY{k}{for} \PY{n}{value} \PY{o+ow}{in} \PY{n}{v}\PY{p}{:}
+                         \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{l+m+mi}{0}
+                         \PY{c+c1}{\PYZsh{}print(\PYZdq{}the length of this v[1] is \PYZdq{} + str(len(v[1])))}
+                         \PY{c+c1}{\PYZsh{}print(value)}
+                         \PY{c+c1}{\PYZsh{}print(\PYZdq{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZdq{}) }
+                         
+                         \PY{k}{for} \PY{n}{val} \PY{o+ow}{in} \PY{n}{value}\PY{p}{:}
+                             
+                             \PY{n}{item\PYZus{}total} \PY{o}{=} \PY{n}{item\PYZus{}total} \PY{o}{+} \PY{n+nb}{int}\PY{p}{(}\PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{items}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+                             \PY{n}{bnf\PYZus{}name} \PY{o}{=} \PY{n}{val}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bnf\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} 
+                             \PY{c+c1}{\PYZsh{}print(\PYZdq{}the bnf name assigned is \PYZdq{} + val[\PYZsq{}bnf\PYZus{}name\PYZsq{}] )}
+                         \PY{n}{l} \PY{o}{=} \PY{n+nb}{tuple}\PY{p}{(}\PY{p}{[}\PY{n}{postcode}\PY{p}{,} \PY{n}{bnf\PYZus{}name}\PY{p}{,} \PY{n}{item\PYZus{}total}\PY{p}{]}\PY{p}{)}
+                             \PY{c+c1}{\PYZsh{}print (l)}
+                         \PY{n}{puple\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}print(\PYZdq{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}Every POstal change\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} \PYZdq{})}
+                 
+         \PY{n}{puple\PYZus{}list}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}  
+         \PY{c+c1}{\PYZsh{}print(len(puple\PYZus{}list))}
+         \PY{c+c1}{\PYZsh{}print(count)}
+         \PY{c+c1}{\PYZsh{}print(len)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} [('B11 4BW', '3m Health Care\_Cavilon Durable Barrier C', 7),
+          ('B11 4BW', '3m Health Care\_Cavilon No Sting Barrier', 2),
+          ('B11 4BW', 'Abidec\_Dps', 63),
+          ('B11 4BW', 'Acetic Acid\_Ear Spy 2\% 5ml', 9),
+          ('B11 4BW', 'Aciclovir\_Crm 5\%', 13),
+          ('B11 4BW', 'Aciclovir\_Tab 200mg', 4),
+          ('B11 4BW', 'Aciclovir\_Tab 800mg', 9),
+          ('B11 4BW', 'Aciclovir\_Tab Disper 400mg', 2),
+          ('B11 4BW', 'Adalat LA 30\_Tab 30mg', 3),
+          ('B11 4BW', 'Adalat LA 60\_Tab 60mg', 11)]
+\end{Verbatim}
+            
+    In order to express the item totals as a proportion of the total amount
+of items prescribed across all
+\texttt{\textquotesingle{}bnf\_name\textquotesingle{}} in a postal code,
+we'll need to use the total items prescribed that we previously
+calculated as \texttt{items\_by\_post}. Calculate the proportions for
+the most common \texttt{\textquotesingle{}bnf\_names\textquotesingle{}}
+for each postal code. Format your answer as a list of tuples:
+\texttt{{[}(post\_code,\ bnf\_name,\ total){]}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k+kn}{from} \PY{n+nn}{operator} \PY{k+kn}{import} \PY{n}{itemgetter}\PY{p}{,} \PY{n}{attrgetter}
+         
+         \PY{n}{s} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{puple\PYZus{}list}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{finaltup} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{prevtup} \PY{o}{=} \PY{n}{finaltup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{postsum} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{r} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{postalsumlist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{tup} \PY{o+ow}{in} \PY{n}{finaltup}\PY{p}{:}
+             \PY{k}{if} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{n+nb}{str}\PY{p}{(}\PY{n}{prevtup}\PY{p}{)}\PY{p}{:}
+                 
+                 \PY{n}{postsum} \PY{o}{=} \PY{n}{postsum} \PY{o}{+} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+                 \PY{c+c1}{\PYZsh{}print(\PYZsq{}jndvc\PYZsq{})}
+                 \PY{n}{prevtup} \PY{o}{=} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{r}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                 \PY{k}{if} \PY{n}{r} \PY{o}{==} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{finaltup}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{postalsumlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{postsum}\PY{p}{)} 
+                     \PY{k}{break}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                 \PY{n}{postalsumlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{postsum}\PY{p}{)}
+                 \PY{n}{postsum} \PY{o}{=} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+                 \PY{n}{prevtup} \PY{o}{=} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{c+c1}{\PYZsh{}print(\PYZsq{}jndvc\PYZsq{})}
+                 \PY{k+kc}{None}
+         
+         \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0} 
+         \PY{n}{prevtup} \PY{o}{=} \PY{n}{finaltup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{tupandtotallist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{tup} \PY{o+ow}{in} \PY{n}{finaltup}\PY{p}{:}
+             \PY{k}{if} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{n+nb}{str}\PY{p}{(}\PY{n}{prevtup}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{tupandtotallist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{postalsumlist}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{prevtup} \PY{o}{=} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{i} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                 \PY{n}{tupandtotallist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{postalsumlist}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+               
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{postalsumlist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n}{i}\PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{ratiotup} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{prevtup} \PY{o}{=} \PY{n}{finaltup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{k}{for} \PY{n}{tup} \PY{o+ow}{in} \PY{n}{finaltup}\PY{p}{:}
+             \PY{n}{n} \PY{o}{=} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{/}\PY{n}{tupandtotallist}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+             \PY{n}{i} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+             \PY{n}{ratiotup}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{(}\PY{p}{[}\PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}  \PY{n}{n}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+         
+         \PY{n}{counter} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{postlist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{firstpost100} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{tup} \PY{o+ow}{in} \PY{n}{ratiotup}\PY{p}{:}
+             \PY{k}{if} \PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{postlist} \PY{o+ow}{and} \PY{n}{counter} \PY{o}{\PYZlt{}}\PY{l+m+mi}{100}\PY{p}{:}
+                 \PY{n}{firstpost100}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tup}\PY{p}{)}
+                 \PY{n}{postlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tup}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{counter} \PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                 
+             \PY{k}{else}\PY{p}{:} 
+                 \PY{k+kc}{None}
+         
+         \PY{n}{firstpost100}         
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[20673, 19001, 29103, 24859, 36531, 34356, 28254, 54514, 29388, 44585]
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}47}]:} [('B11 4BW', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.03415082474725487),
+          ('B18 7AL', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.02926161780958897),
+          ('B21 9RY', 'Metformin HCl\_Tab 500mg', 0.03549462254750369),
+          ('B23 6DJ', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.024095900880968663),
+          ('B70 7AW', 'Paracet\_Tab 500mg', 0.0266896608360023),
+          ('BB11 2DL', 'Omeprazole\_Cap E/C 20mg', 0.02884503434625684),
+          ('BB2 1AX', 'Omeprazole\_Cap E/C 20mg', 0.03645501521908402),
+          ('BB3 1PY', 'Omeprazole\_Cap E/C 20mg', 0.03428477088454342),
+          ('BB4 5SL', 'Omeprazole\_Cap E/C 20mg', 0.040696883081529876),
+          ('BB7 2JG', 'Omeprazole\_Cap E/C 20mg', 0.029471795446899183),
+          ('BB8 0JZ', 'Atorvastatin\_Tab 20mg', 0.022563442442074293),
+          ('BB9 7SR', 'Omeprazole\_Cap E/C 20mg', 0.023833193804939305),
+          ('BD3 8QH', 'Atorvastatin\_Tab 40mg', 0.03422179914326511),
+          ('BH18 8EE', 'Omeprazole\_Cap E/C 20mg', 0.029000583563798747),
+          ('BH23 3AF', 'Omeprazole\_Cap E/C 20mg', 0.03733292364418497),
+          ('BL1 8TU', 'Omeprazole\_Cap E/C 20mg', 0.03095821215368131),
+          ('BL3 5HP', 'Omeprazole\_Cap E/C 20mg', 0.03359487236158692),
+          ('BL9 0NJ', 'Omeprazole\_Cap E/C 20mg', 0.033622356683924895),
+          ('BL9 0SN', 'Omeprazole\_Cap E/C 20mg', 0.03257264351523742),
+          ('CB9 8HF', 'Omeprazole\_Cap E/C 20mg', 0.03586107485828934),
+          ('CH1 4DS', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.026979808105398826),
+          ('CH65 6TG', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.027421283379832604),
+          ('CT11 8AD', 'Omeprazole\_Cap E/C 20mg', 0.02371612786870463),
+          ('CV1 4FS', 'Omeprazole\_Cap E/C 20mg', 0.02988443966675625),
+          ('CW1 3AW', 'Omeprazole\_Cap E/C 20mg', 0.03687757394234369),
+          ('CW5 5NX', 'Omeprazole\_Cap E/C 20mg', 0.036574992911823076),
+          ('CW7 1AT', 'Omeprazole\_Cap E/C 20mg', 0.038342136965990176),
+          ('DA1 2HA', 'Omeprazole\_Cap E/C 20mg', 0.020977948226270374),
+          ('DA11 8BZ', 'Amoxicillin\_Cap 500mg', 0.021502698215026983),
+          ('DN22 7XF', 'Simvastatin\_Tab 40mg', 0.019888143695899377),
+          ('DN34 4GB', 'Omeprazole\_Cap E/C 20mg', 0.03894778497490263),
+          ('FY2 0JG', 'Omeprazole\_Cap E/C 20mg', 0.03794959344888452),
+          ('FY4 1TJ', 'Omeprazole\_Cap E/C 20mg', 0.04512928155710333),
+          ('FY5 2TZ', 'Omeprazole\_Cap E/C 20mg', 0.037575127660535945),
+          ('FY7 8GU', 'Omeprazole\_Cap E/C 20mg', 0.03420067879209816),
+          ('GL1 3PX', 'Omeprazole\_Cap E/C 20mg', 0.027334732423924448),
+          ('GL50 4DP', 'Omeprazole\_Cap E/C 20mg', 0.02469861805351367),
+          ('GU9 9QS', 'Omeprazole\_Cap E/C 20mg', 0.028601661946406898),
+          ('HA0 4UZ', 'Metformin HCl\_Tab 500mg', 0.02961986376620523),
+          ('HA3 7LT', 'Omeprazole\_Cap E/C 20mg', 0.0265001712702021),
+          ('HG1 5AR', 'Omeprazole\_Cap E/C 20mg', 0.030014686084934523),
+          ('HU7 4DW', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.026594986458142424),
+          ('KT14 6DH', 'Amlodipine\_Tab 5mg', 0.01980716047537185),
+          ('KT6 6EZ', 'Omeprazole\_Cap E/C 20mg', 0.029557408595253368),
+          ('L31 0DJ', 'Omeprazole\_Cap E/C 20mg', 0.031093092156556992),
+          ('L36 7XY', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.0304811669932506),
+          ('L5 0QW', 'Omeprazole\_Cap E/C 20mg', 0.03383854757659264),
+          ('L7 6HD', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.026874016302943456),
+          ('LA1 1PN', 'Omeprazole\_Cap E/C 20mg', 0.03593535438892997),
+          ('LE10 1DS', 'Aspirin Disper\_Tab 75mg', 0.02211411776629168),
+          ('LE18 2EW', 'Lansoprazole\_Cap 15mg (E/C Gran)', 0.026545337066551798),
+          ('LE5 3GH', 'Metformin HCl\_Tab 500mg', 0.0354924268862986),
+          ('LN2 2JP', 'Omeprazole\_Cap E/C 20mg', 0.036189981157819504),
+          ('LS9 9EF', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.03184116875819442),
+          ('M11 4EJ', 'Omeprazole\_Cap E/C 20mg', 0.03207286540619874),
+          ('M26 2SP', 'Omeprazole\_Cap E/C 20mg', 0.04085582480513283),
+          ('M30 0NU', 'Omeprazole\_Cap E/C 20mg', 0.03824666953158573),
+          ('M35 0AD', 'Omeprazole\_Cap E/C 20mg', 0.03085140306122449),
+          ('ME8 8AA', 'Omeprazole\_Cap E/C 20mg', 0.02328067466444946),
+          ('N9 7HD', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.026281508499967434),
+          ('NE10 9QG', 'Paracet\_Tab 500mg', 0.044305701820370094),
+          ('NE24 1DX', 'Paracet\_Tab 500mg', 0.0320651205165277),
+          ('NE37 2PU', 'Paracet\_Tab 500mg', 0.02777391304347826),
+          ('NE38 7NQ', 'Paracet\_Tab 500mg', 0.031134594625305382),
+          ('NG7 3GW', 'Paracet\_Tab 500mg', 0.022318906091083737),
+          ('NG7 5HY', 'Paracet\_Tab 500mg', 0.02509737782596474),
+          ('NN16 8DN', 'Omeprazole\_Cap E/C 20mg', 0.03547300624372181),
+          ('NW10 8RY', 'Metformin HCl\_Tab 500mg', 0.030900570686215375),
+          ('OL1 1NL', 'Omeprazole\_Cap E/C 20mg', 0.033425912390975976),
+          ('OL11 1DN', 'Omeprazole\_Cap E/C 20mg', 0.032178791672462556),
+          ('OL4 1YN', 'Omeprazole\_Cap E/C 20mg', 0.02989427633977397),
+          ('OL9 7AY', 'Omeprazole\_Cap E/C 20mg', 0.03317602310347256),
+          ('PL7 1AD', 'Omeprazole\_Cap E/C 20mg', 0.03856973759050591),
+          ('RM3 9SU', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.027516093578269743),
+          ('S63 9EH', 'Salbutamol\_Inha 100mcg (200 D) CFF', 0.03003995745537126),
+          ('S65 1DA', 'Influenza\_Vac Inact 0.5ml Pfs', 0.023771326534882748),
+          ('S74 9AF', 'Omeprazole\_Cap E/C 20mg', 0.035946116987614136),
+          ('SE1 6JP', 'Metformin HCl\_Tab 500mg', 0.023339995558516544),
+          ('SE15 5LJ', 'Metformin HCl\_Tab 500mg', 0.02451173155066195),
+          ('SK11 6JL', 'Omeprazole\_Cap E/C 20mg', 0.029244760200234393),
+          ('SK6 1ND', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.019072510860735352),
+          ('SM3 8EP', 'Omeprazole\_Cap E/C 20mg', 0.02976166633286601),
+          ('SM6 0HY', 'Omeprazole\_Cap E/C 20mg', 0.03170636300417246),
+          ('SR4 7XF', 'Paracet\_Tab 500mg', 0.03414722227795277),
+          ('SR5 2LT', 'Paracet\_Tab 500mg', 0.03603964806771355),
+          ('SS0 7AF', 'Omeprazole\_Cap E/C 20mg', 0.02118781584681719),
+          ('SS13 3HQ', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.025575779606885986),
+          ('SS8 0JA', 'Omeprazole\_Cap E/C 20mg', 0.026893212353864944),
+          ('SS9 5UU', 'Influvac Sub-Unit\_Vac 0.5ml Pfs', 0.02536884460624641),
+          ('ST1 4PB', 'Omeprazole\_Cap E/C 20mg', 0.029595079869567012),
+          ('ST3 6AB', 'Omeprazole\_Cap E/C 20mg', 0.03128794729363132),
+          ('ST8 6AG', 'Omeprazole\_Cap E/C 20mg', 0.03963379302352532),
+          ('TN24 0GP', 'Amoxicillin\_Cap 500mg', 0.08493069890887643),
+          ('TN34 1BA', 'Omeprazole\_Cap E/C 20mg', 0.03102866779089376),
+          ('TR1 2JA', 'Omeprazole\_Cap E/C 20mg', 0.04630044285216699),
+          ('TS1 2NX', 'Paracet\_Tab 500mg', 0.027549713373789975),
+          ('TS10 4NW', 'Paracet\_Tab 500mg', 0.023228006465755853),
+          ('TS17 0EE', 'Lansoprazole\_Cap 30mg (E/C Gran)', 0.025048254079663098),
+          ('TS23 2DG', 'Paracet\_Tab 500mg', 0.025532452758642483),
+          ('TS24 7PW', 'Paracet\_Tab 500mg', 0.03858642431322693)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{items\PYZus{}by\PYZus{}region} \PY{o}{=} \PY{n}{firstpost100}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{grader}\PY{o}{.}\PY{n}{score}\PY{o}{.}\PY{n}{pw\PYZus{}\PYZus{}items\PYZus{}by\PYZus{}region}\PY{p}{(}\PY{n}{items\PYZus{}by\PYZus{}region}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+==================
+Your score:  1.0
+==================
+
+    \end{Verbatim}
+
+    \emph{Copyright © 2020 The Data Incubator. All rights reserved.}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
